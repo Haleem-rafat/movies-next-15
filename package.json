@@ -2,7 +2,7 @@
   "name": "movies-next-15",
   "version": "0.1.0",
   "private": true,
-    "scripts": {
+  "scripts": {
     "dev": "NODE_ENV=development next dev --turbopack",
     "dev:prod": "NODE_ENV=production next dev --turbopack",
     "build": "NODE_ENV=production next build",
@@ -19,7 +19,8 @@
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "swiper": "^11.2.10",
-    "swr": "^2.3.4"
+    "swr": "^2.3.4",
+    "vercel": "^44.7.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
