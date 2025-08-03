@@ -361,7 +361,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-**Made with ❤️ by [Your Name]**
+**Made with ❤️ by Haleem rafat**
 
 [![GitHub stars](https://img.shields.io/github/stars/yourusername/movies-next-15?style=social)](https://github.com/yourusername/movies-next-15)
 [![GitHub forks](https://img.shields.io/github/forks/yourusername/movies-next-15?style=social)](https://github.com/yourusername/movies-next-15)
