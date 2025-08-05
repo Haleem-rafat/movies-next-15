@@ -25,7 +25,7 @@ export interface Result {
   original_name?: string;
   gender?: number;
   known_for_department?: string;
-  profile_path: any;
+  profile_path?: string;
   known_for?: KnownFor[];
   first_air_date?: string;
   origin_country?: string[];

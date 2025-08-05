@@ -1,6 +1,121 @@
 import { ISuggestions } from "../types/suggestions.types";
 import instance from "./api";
 
+// Type definitions for API responses
+interface MovieDetails {
+  id: number;
+  title: string;
+  overview: string;
+  poster_path: string;
+  backdrop_path: string;
+  release_date: string;
+  vote_average: number;
+  vote_count: number;
+  genres: Array<{ id: number; name: string }>;
+  credits: {
+    cast: Array<{
+      id: number;
+      name: string;
+      character: string;
+      profile_path?: string;
+    }>;
+    crew: Array<{
+      id: number;
+      name: string;
+      job: string;
+      profile_path?: string;
+    }>;
+  };
+  videos: {
+    results: Array<{
+      id: string;
+      key: string;
+      name: string;
+      site: string;
+      type: string;
+    }>;
+  };
+  images: {
+    backdrops: Array<{ file_path: string; width: number; height: number }>;
+    posters: Array<{ file_path: string; width: number; height: number }>;
+  };
+  similar: ISuggestions;
+  recommendations: ISuggestions;
+}
+
+interface TVDetails {
+  id: number;
+  name: string;
+  overview: string;
+  poster_path: string;
+  backdrop_path: string;
+  first_air_date: string;
+  last_air_date: string;
+  vote_average: number;
+  vote_count: number;
+  genres: Array<{ id: number; name: string }>;
+  credits: {
+    cast: Array<{
+      id: number;
+      name: string;
+      character: string;
+      profile_path?: string;
+    }>;
+    crew: Array<{
+      id: number;
+      name: string;
+      job: string;
+      profile_path?: string;
+    }>;
+  };
+  videos: {
+    results: Array<{
+      id: string;
+      key: string;
+      name: string;
+      site: string;
+      type: string;
+    }>;
+  };
+  images: {
+    backdrops: Array<{ file_path: string; width: number; height: number }>;
+    posters: Array<{ file_path: string; width: number; height: number }>;
+  };
+  similar: ISuggestions;
+  recommendations: ISuggestions;
+}
+
+interface PersonDetails {
+  id: number;
+  name: string;
+  biography: string;
+  profile_path?: string;
+  birthday?: string;
+  place_of_birth?: string;
+  known_for_department: string;
+  popularity: number;
+  combined_credits: {
+    cast: Array<{
+      id: number;
+      title?: string;
+      name?: string;
+      character: string;
+      poster_path?: string;
+    }>;
+    crew: Array<{
+      id: number;
+      title?: string;
+      name?: string;
+      job: string;
+      poster_path?: string;
+    }>;
+  };
+}
+
+interface GenreList {
+  genres: Array<{ id: number; name: string }>;
+}
+
 // API Key from environment
 const apiKey = process.env.NEXT_PUBLIC_TMDB_API_KEY;
 
@@ -72,7 +187,7 @@ class SuggestionsService {
     }
   }
 
-  public async getTopRatedMovies(page: number = 1): Promise<ISuggestions> {
+  public async getTopRatedMovies(_page: number = 1): Promise<ISuggestions> {
     try {
       // Use predefined request URL for top rated movies
       const response = await fetch(requests.requestTopRated);
@@ -111,7 +226,9 @@ class SuggestionsService {
     }
   }
 
-  public async getTrending(params: TrendingParams = {}): Promise<ISuggestions> {
+  public async getTrending(
+    _params: TrendingParams = {}
+  ): Promise<ISuggestions> {
     try {
       // Use predefined request URL for trending movies
       const response = await fetch(requests.requestTrending);
@@ -126,7 +243,9 @@ class SuggestionsService {
     }
   }
 
-  public async getMovieDetails(movieId: string | number): Promise<any> {
+  public async getMovieDetails(
+    movieId: string | number
+  ): Promise<MovieDetails> {
     try {
       const { data } = await instance.get(`/movie/${movieId}`, {
         params: {
@@ -140,7 +259,7 @@ class SuggestionsService {
     }
   }
 
-  public async getTVDetails(tvId: string | number): Promise<any> {
+  public async getTVDetails(tvId: string | number): Promise<TVDetails> {
     try {
       const { data } = await instance.get(`/tv/${tvId}`, {
         params: {
@@ -154,7 +273,7 @@ class SuggestionsService {
     }
   }
 
-  public async getMovieGenres(): Promise<any> {
+  public async getMovieGenres(): Promise<GenreList> {
     try {
       const { data } = await instance.get("/genre/movie/list");
       return data;
@@ -164,7 +283,7 @@ class SuggestionsService {
     }
   }
 
-  public async getTVGenres(): Promise<any> {
+  public async getTVGenres(): Promise<GenreList> {
     try {
       const { data } = await instance.get("/genre/tv/list");
       return data;
@@ -262,7 +381,9 @@ class SuggestionsService {
     }
   }
 
-  public async getPersonDetails(personId: string | number): Promise<any> {
+  public async getPersonDetails(
+    personId: string | number
+  ): Promise<PersonDetails> {
     try {
       const { data } = await instance.get(`/person/${personId}`, {
         params: {
@@ -276,7 +397,9 @@ class SuggestionsService {
     }
   }
 
-  public async getMovieCredits(movieId: string | number): Promise<any> {
+  public async getMovieCredits(
+    movieId: string | number
+  ): Promise<MovieDetails["credits"]> {
     try {
       const { data } = await instance.get(`/movie/${movieId}/credits`);
       return data;
@@ -286,7 +409,9 @@ class SuggestionsService {
     }
   }
 
-  public async getTVCredits(tvId: string | number): Promise<any> {
+  public async getTVCredits(
+    tvId: string | number
+  ): Promise<TVDetails["credits"]> {
     try {
       const { data } = await instance.get(`/tv/${tvId}/credits`);
       return data;
@@ -296,7 +421,9 @@ class SuggestionsService {
     }
   }
 
-  public async getMovieVideos(movieId: string | number): Promise<any> {
+  public async getMovieVideos(
+    movieId: string | number
+  ): Promise<MovieDetails["videos"]> {
     try {
       const { data } = await instance.get(`/movie/${movieId}/videos`);
       return data;
@@ -306,7 +433,9 @@ class SuggestionsService {
     }
   }
 
-  public async getTVVideos(tvId: string | number): Promise<any> {
+  public async getTVVideos(
+    tvId: string | number
+  ): Promise<TVDetails["videos"]> {
     try {
       const { data } = await instance.get(`/tv/${tvId}/videos`);
       return data;
@@ -316,7 +445,9 @@ class SuggestionsService {
     }
   }
 
-  public async getMovieImages(movieId: string | number): Promise<any> {
+  public async getMovieImages(
+    movieId: string | number
+  ): Promise<MovieDetails["images"]> {
     try {
       const { data } = await instance.get(`/movie/${movieId}/images`);
       return data;
@@ -326,7 +457,9 @@ class SuggestionsService {
     }
   }
 
-  public async getTVImages(tvId: string | number): Promise<any> {
+  public async getTVImages(
+    tvId: string | number
+  ): Promise<TVDetails["images"]> {
     try {
       const { data } = await instance.get(`/tv/${tvId}/images`);
       return data;
