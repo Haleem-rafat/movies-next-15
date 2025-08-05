@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect } from "react";
 import { Home, RefreshCw } from "lucide-react";
 import Link from "next/link";
 
@@ -10,11 +9,6 @@ interface ErrorProps {
 }
 
 export default function MoviesError({ error, reset }: ErrorProps) {
-  useEffect(() => {
-    // Log the error to an error reporting service
-    console.error("Movies section error:", error);
-  }, [error]);
-
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white pt-20">
       <div className="container mx-auto px-4 py-8">

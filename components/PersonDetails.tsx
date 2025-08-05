@@ -9,7 +9,6 @@ import {
   ArrowLeft,
   ExternalLink,
   Award,
-  Users,
   Film,
   Tv,
   Heart,
@@ -80,7 +79,6 @@ export default function PersonDetails({ personId }: PersonDetailsProps) {
         setIsLoading(true);
         setError(null);
 
-        // Fetch person details
         const personResponse = await fetch(`/api/person/${personId}`);
         if (!personResponse.ok)
           throw new Error("Failed to fetch person details");
@@ -294,13 +292,22 @@ export default function PersonDetails({ personId }: PersonDetailsProps) {
                       IMDb
                     </a>
                   )}
-                  <button className="inline-flex items-center px-4 py-2 bg-gray-700/50 backdrop-blur-sm hover:bg-gray-600/50 text-white rounded-lg transition-all duration-300">
+                  <button
+                    type="button"
+                    className="inline-flex items-center px-4 py-2 bg-gray-700/50 backdrop-blur-sm hover:bg-gray-600/50 text-white rounded-lg transition-all duration-300"
+                  >
                     <Heart className="w-4 h-4" />
                   </button>
-                  <button className="inline-flex items-center px-4 py-2 bg-gray-700/50 backdrop-blur-sm hover:bg-gray-600/50 text-white rounded-lg transition-all duration-300">
+                  <button
+                    type="button"
+                    className="inline-flex items-center px-4 py-2 bg-gray-700/50 backdrop-blur-sm hover:bg-gray-600/50 text-white rounded-lg transition-all duration-300"
+                  >
                     <Bookmark className="w-4 h-4" />
                   </button>
-                  <button className="inline-flex items-center px-4 py-2 bg-gray-700/50 backdrop-blur-sm hover:bg-gray-600/50 text-white rounded-lg transition-all duration-300">
+                  <button
+                    type="button"
+                    className="inline-flex items-center px-4 py-2 bg-gray-700/50 backdrop-blur-sm hover:bg-gray-600/50 text-white rounded-lg transition-all duration-300"
+                  >
                     <Share2 className="w-4 h-4" />
                   </button>
                 </div>
@@ -320,8 +327,11 @@ export default function PersonDetails({ personId }: PersonDetailsProps) {
             { id: "photos", label: "Photos" },
           ].map((tab) => (
             <button
+              type="button"
               key={tab.id}
-              onClick={() => setActiveTab(tab.id as any)}
+              onClick={() =>
+                setActiveTab(tab.id as "overview" | "movies" | "tv" | "photos")
+              }
               className={`px-6 py-3 font-semibold transition-all duration-300 whitespace-nowrap ${
                 activeTab === tab.id
                   ? "text-white border-b-2 border-red-500"

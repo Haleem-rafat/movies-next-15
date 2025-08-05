@@ -90,6 +90,7 @@ export default function PopularTVSeries() {
       {series.length > 4 && (
         <>
           <button
+            type="button"
             onClick={prevSlide}
             className="absolute left-0 top-1/2 transform -translate-y-1/2 z-10 p-2 bg-black/50 backdrop-blur-sm text-white rounded-full hover:bg-black/70 transition-all duration-300"
           >
@@ -97,6 +98,7 @@ export default function PopularTVSeries() {
           </button>
 
           <button
+            type="button"
             onClick={nextSlide}
             className="absolute right-0 top-1/2 transform -translate-y-1/2 z-10 p-2 bg-black/50 backdrop-blur-sm text-white rounded-full hover:bg-black/70 transition-all duration-300"
           >

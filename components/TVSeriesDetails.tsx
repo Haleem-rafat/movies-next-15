@@ -317,7 +317,7 @@ export default function TVSeriesDetails({ seriesId }: TVSeriesDetailsProps) {
             <button
               type="button"
               key={tab.id}
-              onClick={() => setActiveTab(tab.id as any)}
+              onClick={() => setActiveTab(tab.id as "overview" | "seasons" | "cast" | "reviews")}
               className={`px-6 py-3 font-semibold transition-all duration-300 whitespace-nowrap ${
                 activeTab === tab.id
                   ? "text-white border-b-2 border-red-500"

@@ -1,6 +1,7 @@
 import useSWR from "swr";
-import { SWR_KEYS } from "@/app/constants/swrkeys";
 import { ISuggestions } from "@/app/api/types/suggestions.types";
+import { SWR_KEYS } from "../constants/swrkeys";
+import suggestionsService from "../api/service/suggestions.service";
 
 // Fetcher function for API calls
 const fetcher = async (url: string) => {
@@ -70,9 +71,11 @@ export const useTrending = (
   mediaType: "all" | "movie" | "tv" = "all",
   timeWindow: "day" | "week" = "week"
 ) => {
-  const { data, error, isLoading, mutate } = useSWR<ISuggestions>(
-    `/api/movies/trending?mediaType=${mediaType}&timeWindow=${timeWindow}`,
-    fetcher
+  const { data, error, isLoading, mutate } = useSWR(
+    [SWR_KEYS.TRENDING, mediaType, timeWindow],
+    async () => {
+      return suggestionsService.getTrending();
+    }
   );
 
   return {

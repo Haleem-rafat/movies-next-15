@@ -149,12 +149,6 @@ interface DiscoverParams {
   first_air_date_year?: number;
 }
 
-interface TrendingParams {
-  mediaType?: "all" | "movie" | "tv" | "person";
-  timeWindow?: "day" | "week";
-  page?: number;
-}
-
 class SuggestionsService {
   public async searchMulti(params: SearchParams): Promise<ISuggestions> {
     try {
@@ -167,12 +161,12 @@ class SuggestionsService {
       });
       return data;
     } catch (error) {
-      // Log error for debugging (consider using a proper logging service in production)
+      console.log("Failed to fetch popular movies", error);
       throw error;
     }
   }
 
-  public async getPopularMovies(_page: number = 1): Promise<ISuggestions> {
+  public async getPopularMovies(): Promise<ISuggestions> {
     try {
       // Use predefined request URL for popular movies
       const response = await fetch(requests.requestPopular);
@@ -182,12 +176,12 @@ class SuggestionsService {
       const data = await response.json();
       return data;
     } catch (error) {
-      // Log error for debugging (consider using a proper logging service in production)
+      console.log("Failed to fetch top rated movies", error);
       throw error;
     }
   }
 
-  public async getTopRatedMovies(_page: number = 1): Promise<ISuggestions> {
+  public async getTopRatedMovies(): Promise<ISuggestions> {
     try {
       // Use predefined request URL for top rated movies
       const response = await fetch(requests.requestTopRated);
@@ -197,40 +191,37 @@ class SuggestionsService {
       const data = await response.json();
       return data;
     } catch (error) {
-      // Log error for debugging (consider using a proper logging service in production)
+      console.log("Failed to fetch top rated movies", error);
       throw error;
     }
   }
 
-  public async getPopularTV(page: number = 1): Promise<ISuggestions> {
+  public async getPopularTV(): Promise<ISuggestions> {
     try {
       const { data } = await instance.get("/tv/popular", {
-        params: { page },
+        params: { page: 1 },
       });
       return data;
     } catch (error) {
-      // Log error for debugging (consider using a proper logging service in production)
+      console.log("Failed to fetch popular TV", error);
       throw error;
     }
   }
 
-  public async getTopRatedTV(page: number = 1): Promise<ISuggestions> {
+  public async getTopRatedTV(): Promise<ISuggestions> {
     try {
       const { data } = await instance.get("/tv/top_rated", {
-        params: { page },
+        params: { page: 1 },
       });
       return data;
     } catch (error) {
-      // Log error for debugging (consider using a proper logging service in production)
+      console.log("Failed to fetch top rated TV", error);
       throw error;
     }
   }
 
-  public async getTrending(
-    _params: TrendingParams = {}
-  ): Promise<ISuggestions> {
+  public async getTrending(): Promise<ISuggestions> {
     try {
-      // Use predefined request URL for trending movies
       const response = await fetch(requests.requestTrending);
       if (!response.ok) {
         throw new Error("Failed to fetch trending movies");
@@ -238,7 +229,7 @@ class SuggestionsService {
       const data = await response.json();
       return data;
     } catch (error) {
-      // Log error for debugging (consider using a proper logging service in production)
+      console.log("Failed to fetch trending movies", error);
       throw error;
     }
   }
@@ -254,7 +245,7 @@ class SuggestionsService {
       });
       return data;
     } catch (error) {
-      // Log error for debugging (consider using a proper logging service in production)
+      console.log("Failed to fetch movie details", error);
       throw error;
     }
   }
@@ -268,7 +259,7 @@ class SuggestionsService {
       });
       return data;
     } catch (error) {
-      // Log error for debugging (consider using a proper logging service in production)
+      console.log("Failed to fetch TV details", error);
       throw error;
     }
   }
@@ -278,7 +269,7 @@ class SuggestionsService {
       const { data } = await instance.get("/genre/movie/list");
       return data;
     } catch (error) {
-      // Log error for debugging (consider using a proper logging service in production)
+      console.log("Failed to fetch movie genres", error);
       throw error;
     }
   }
@@ -288,7 +279,7 @@ class SuggestionsService {
       const { data } = await instance.get("/genre/tv/list");
       return data;
     } catch (error) {
-      // Log error for debugging (consider using a proper logging service in production)
+      console.log("Failed to fetch TV genres", error);
       throw error;
     }
   }
@@ -300,7 +291,7 @@ class SuggestionsService {
       const { data } = await instance.get("/discover/movie", { params });
       return data;
     } catch (error) {
-      // Log error for debugging (consider using a proper logging service in production)
+      console.log("Failed to discover movies", error);
       throw error;
     }
   }
@@ -310,14 +301,13 @@ class SuggestionsService {
       const { data } = await instance.get("/discover/tv", { params });
       return data;
     } catch (error) {
-      // Log error for debugging (consider using a proper logging service in production)
+      console.log("Failed to discover TV", error);
       throw error;
     }
   }
 
-  public async getUpcomingMovies(page: number = 1): Promise<ISuggestions> {
+  public async getUpcomingMovies(): Promise<ISuggestions> {
     try {
-      // Use predefined request URL for upcoming movies
       const response = await fetch(requests.requestUpcoming);
       if (!response.ok) {
         throw new Error("Failed to fetch upcoming movies");
@@ -325,14 +315,13 @@ class SuggestionsService {
       const data = await response.json();
       return data;
     } catch (error) {
-      // Log error for debugging (consider using a proper logging service in production)
+      console.log("Failed to fetch upcoming movies", error);
       throw error;
     }
   }
 
   public async getHorrorMovies(): Promise<ISuggestions> {
     try {
-      // Use predefined request URL for horror movies
       const response = await fetch(requests.requestHorror);
       if (!response.ok) {
         throw new Error("Failed to fetch horror movies");
@@ -340,43 +329,43 @@ class SuggestionsService {
       const data = await response.json();
       return data;
     } catch (error) {
-      // Log error for debugging (consider using a proper logging service in production)
+      console.log("Failed to fetch horror movies", error);
       throw error;
     }
   }
 
-  public async getNowPlayingMovies(page: number = 1): Promise<ISuggestions> {
+  public async getNowPlayingMovies(): Promise<ISuggestions> {
     try {
       const { data } = await instance.get("/movie/now_playing", {
-        params: { page },
+        params: { page: 1 },
       });
       return data;
     } catch (error) {
-      // Log error for debugging (consider using a proper logging service in production)
+      console.log("Failed to fetch now playing movies", error);
       throw error;
     }
   }
 
-  public async getOnTheAirTV(page: number = 1): Promise<ISuggestions> {
+  public async getOnTheAirTV(): Promise<ISuggestions> {
     try {
       const { data } = await instance.get("/tv/on_the_air", {
-        params: { page },
+        params: { page: 1 },
       });
       return data;
     } catch (error) {
-      // Log error for debugging (consider using a proper logging service in production)
+      console.log("Failed to fetch on the air TV", error);
       throw error;
     }
   }
 
-  public async getAiringTodayTV(page: number = 1): Promise<ISuggestions> {
+  public async getAiringTodayTV(): Promise<ISuggestions> {
     try {
       const { data } = await instance.get("/tv/airing_today", {
-        params: { page },
+        params: { page: 1 },
       });
       return data;
     } catch (error) {
-      // Log error for debugging (consider using a proper logging service in production)
+      console.log("Failed to fetch airing today TV", error);
       throw error;
     }
   }
@@ -392,7 +381,7 @@ class SuggestionsService {
       });
       return data;
     } catch (error) {
-      // Log error for debugging (consider using a proper logging service in production)
+      console.log("Failed to fetch person details", error);
       throw error;
     }
   }
@@ -404,7 +393,7 @@ class SuggestionsService {
       const { data } = await instance.get(`/movie/${movieId}/credits`);
       return data;
     } catch (error) {
-      // Log error for debugging (consider using a proper logging service in production)
+      console.log("Failed to fetch movie credits", error);
       throw error;
     }
   }
@@ -416,7 +405,7 @@ class SuggestionsService {
       const { data } = await instance.get(`/tv/${tvId}/credits`);
       return data;
     } catch (error) {
-      // Log error for debugging (consider using a proper logging service in production)
+      console.log("Failed to fetch TV credits", error);
       throw error;
     }
   }
@@ -428,7 +417,7 @@ class SuggestionsService {
       const { data } = await instance.get(`/movie/${movieId}/videos`);
       return data;
     } catch (error) {
-      // Log error for debugging (consider using a proper logging service in production)
+      console.log("Failed to fetch movie videos", error);
       throw error;
     }
   }
@@ -440,7 +429,7 @@ class SuggestionsService {
       const { data } = await instance.get(`/tv/${tvId}/videos`);
       return data;
     } catch (error) {
-      // Log error for debugging (consider using a proper logging service in production)
+      console.log("Failed to fetch TV videos", error);
       throw error;
     }
   }
@@ -452,7 +441,7 @@ class SuggestionsService {
       const { data } = await instance.get(`/movie/${movieId}/images`);
       return data;
     } catch (error) {
-      // Log error for debugging (consider using a proper logging service in production)
+      console.log("Failed to fetch movie images", error);
       throw error;
     }
   }
@@ -464,67 +453,61 @@ class SuggestionsService {
       const { data } = await instance.get(`/tv/${tvId}/images`);
       return data;
     } catch (error) {
-      // Log error for debugging (consider using a proper logging service in production)
+      console.log("Failed to fetch TV images", error);
       throw error;
     }
   }
 
   public async getMovieRecommendations(
-    movieId: string | number,
-    page: number = 1
+    movieId: string | number
   ): Promise<ISuggestions> {
     try {
       const { data } = await instance.get(`/movie/${movieId}/recommendations`, {
-        params: { page },
+        params: { page: 1 },
       });
       return data;
     } catch (error) {
-      // Log error for debugging (consider using a proper logging service in production)
+      console.log("Failed to fetch movie recommendations", error);
       throw error;
     }
   }
 
   public async getTVRecommendations(
-    tvId: string | number,
-    page: number = 1
+    tvId: string | number
   ): Promise<ISuggestions> {
     try {
       const { data } = await instance.get(`/tv/${tvId}/recommendations`, {
-        params: { page },
+        params: { page: 1 },
       });
       return data;
     } catch (error) {
-      // Log error for debugging (consider using a proper logging service in production)
+      console.log("Failed to fetch TV recommendations", error);
       throw error;
     }
   }
 
   public async getMovieSimilar(
-    movieId: string | number,
-    page: number = 1
+    movieId: string | number
   ): Promise<ISuggestions> {
     try {
       const { data } = await instance.get(`/movie/${movieId}/similar`, {
-        params: { page },
+        params: { page: 1 },
       });
       return data;
     } catch (error) {
-      // Log error for debugging (consider using a proper logging service in production)
+      console.log("Failed to fetch movie similar", error);
       throw error;
     }
   }
 
-  public async getTVSimilar(
-    tvId: string | number,
-    page: number = 1
-  ): Promise<ISuggestions> {
+  public async getTVSimilar(tvId: string | number): Promise<ISuggestions> {
     try {
       const { data } = await instance.get(`/tv/${tvId}/similar`, {
-        params: { page },
+        params: { page: 1 },
       });
       return data;
     } catch (error) {
-      // Log error for debugging (consider using a proper logging service in production)
+      console.log("Failed to fetch TV similar", error);
       throw error;
     }
   }

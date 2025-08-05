@@ -30,7 +30,6 @@ export default function Header() {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [debouncedSearchTerm, setDebouncedSearchTerm] = useState("");
-  const [hoveredItem, setHoveredItem] = useState<string | null>(null);
 
   const navItems = [
     {
@@ -91,7 +90,6 @@ export default function Header() {
     },
   ];
 
-  // Debounce search term to avoid excessive API calls
   useEffect(() => {
     const timeoutId = setTimeout(() => {
       setDebouncedSearchTerm(searchTerm);

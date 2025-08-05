@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import suggestionsService from "@/app/api/service/suggestions.service";
 
 export async function GET(
-  request: NextRequest,
+  _request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
@@ -19,7 +19,7 @@ export async function GET(
 
     return NextResponse.json(data);
   } catch (error) {
-    // Log error for debugging (consider using a proper logging service in production)
+    console.log("Failed to fetch TV series details", error);
     return NextResponse.json(
       { error: "Failed to fetch TV series details" },
       { status: 500 }

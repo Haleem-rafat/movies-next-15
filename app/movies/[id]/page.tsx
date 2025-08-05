@@ -2,19 +2,8 @@ import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import MovieDetails from "@/components/MovieDetails";
 
-interface MoviePageProps {
-  params: Promise<{
-    id: string;
-  }>;
-}
-
-export async function generateMetadata({
-  params,
-}: MoviePageProps): Promise<Metadata> {
+export async function generateMetadata(): Promise<Metadata> {
   try {
-    // Fetch movie data to generate dynamic metadata
-    const { id: movieId } = await params;
-
     return {
       title: `Movie Details - Rise of coding`,
       description: `Watch movie details, cast, reviews, and more information.`,
@@ -27,10 +16,13 @@ export async function generateMetadata({
   }
 }
 
-export default async function MoviePage({ params }: MoviePageProps) {
+export default async function MoviePage({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
   const { id: movieId } = await params;
 
-  // Validate movie ID
   if (!movieId || isNaN(Number(movieId))) {
     notFound();
   }

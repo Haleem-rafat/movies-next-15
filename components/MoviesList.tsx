@@ -126,7 +126,7 @@ export default function MoviesList({
 
     // Apply sorting
     filtered.sort((a, b) => {
-      let aValue: any, bValue: any;
+      let aValue: number, bValue: number;
 
       switch (sortBy) {
         case "rating":
@@ -134,12 +134,12 @@ export default function MoviesList({
           bValue = b.vote_average;
           break;
         case "release_date":
-          aValue = new Date(a.release_date);
-          bValue = new Date(b.release_date);
+          aValue = new Date(a.release_date).getTime();
+          bValue = new Date(b.release_date).getTime();
           break;
         case "title":
-          aValue = a.title.toLowerCase();
-          bValue = b.title.toLowerCase();
+          aValue = a.title.localeCompare(b.title);
+          bValue = b.title.localeCompare(a.title);
           break;
         default: // popularity
           aValue = a.vote_count;

@@ -171,6 +171,7 @@ export default function SeasonDetails({
         <h3 className="text-xl font-semibold mb-4">Error Loading Season</h3>
         <p className="text-gray-400 mb-6">{error}</p>
         <button
+          type="button"
           onClick={() => window.location.reload()}
           className="px-6 py-3 bg-gradient-to-r from-purple-500 to-blue-600 hover:from-purple-600 hover:to-blue-700 text-white font-semibold rounded-lg transition-all duration-300"
         >
@@ -290,7 +291,7 @@ export default function SeasonDetails({
             <button
               type="button"
               key={tab.id}
-              onClick={() => setActiveTab(tab.id as any)}
+              onClick={() => setActiveTab(tab.id as "overview" | "episodes" | "cast")}
               className={`flex-1 px-6 py-4 text-sm font-medium transition-all duration-300 flex items-center justify-center gap-2 ${
                 activeTab === tab.id
                   ? "text-white border-b-2 border-purple-500 bg-gray-700/30"

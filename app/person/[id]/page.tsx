@@ -2,24 +2,18 @@ import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import PersonDetails from "@/components/PersonDetails";
 
-interface PersonPageProps {
-  params: Promise<{
-    id: string;
-  }>;
-}
-
-export async function generateMetadata({
-  params,
-}: PersonPageProps): Promise<Metadata> {
-  const { id: personId } = await params;
-
+export async function generateMetadata(): Promise<Metadata> {
   return {
     title: `Actor Details - Rise of coding`,
     description: `Explore actor filmography, biography, and career highlights.`,
   };
 }
 
-export default async function PersonPage({ params }: PersonPageProps) {
+export default async function PersonPage({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
   const { id: personId } = await params;
 
   // Validate person ID

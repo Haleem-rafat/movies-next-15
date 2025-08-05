@@ -116,7 +116,7 @@ export default function SearchResults({
 
     // Apply sorting
     filtered.sort((a, b) => {
-      let aValue: any, bValue: any;
+      let aValue: number, bValue: number;
 
       switch (sortBy) {
         case "rating":
@@ -124,12 +124,16 @@ export default function SearchResults({
           bValue = b.vote_average;
           break;
         case "release_date":
-          aValue = new Date(a.release_date || a.first_air_date || "");
-          bValue = new Date(b.release_date || b.first_air_date || "");
+          aValue = new Date(a.release_date || a.first_air_date || "").getTime();
+          bValue = new Date(b.release_date || b.first_air_date || "").getTime();
           break;
         case "title":
-          aValue = (a.title || a.name || "").toLowerCase();
-          bValue = (b.title || b.name || "").toLowerCase();
+          aValue = (a.title || a.name || "").localeCompare(
+            b.title || b.name || ""
+          );
+          bValue = (b.title || b.name || "").localeCompare(
+            a.title || a.name || ""
+          );
           break;
         default: // relevance
           return 0; // Keep original order for relevance

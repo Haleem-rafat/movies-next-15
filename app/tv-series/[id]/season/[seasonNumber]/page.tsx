@@ -2,28 +2,26 @@ import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import SeasonDetails from "@/components/SeasonDetails";
 
-interface SeasonPageProps {
-  params: Promise<{
-    id: string;
-    seasonNumber: string;
-  }>;
-}
-
 export async function generateMetadata({
   params,
-}: SeasonPageProps): Promise<Metadata> {
-  const { id: seriesId, seasonNumber } = await params;
-
+}: {
+  params: Promise<{ id: string; seasonNumber: string }>;
+}): Promise<Metadata> {
+  const { seasonNumber } = await params;
   return {
     title: `Season ${seasonNumber} - Rise of coding`,
     description: `Watch Season ${seasonNumber} episodes, cast, and details.`,
   };
 }
 
-export default async function SeasonPage({ params }: SeasonPageProps) {
+export default async function SeasonPage({
+  params,
+}: {
+  params: Promise<{ id: string; seasonNumber: string }>;
+}) {
   const { id: seriesId, seasonNumber } = await params;
 
-  // Validate IDs
+      // Validate IDs
   if (
     !seriesId ||
     isNaN(Number(seriesId)) ||

@@ -119,7 +119,7 @@ export default function MoviesByCategory({ category }: MoviesByCategoryProps) {
 
     // Apply sorting
     filtered.sort((a, b) => {
-      let aValue: any, bValue: any;
+      let aValue: number, bValue: number;
 
       switch (sortBy) {
         case "rating":
@@ -127,12 +127,12 @@ export default function MoviesByCategory({ category }: MoviesByCategoryProps) {
           bValue = b.vote_average;
           break;
         case "release_date":
-          aValue = new Date(a.release_date);
-          bValue = new Date(b.release_date);
+          aValue = new Date(a.release_date).getTime();
+          bValue = new Date(b.release_date).getTime();
           break;
         case "title":
-          aValue = a.title.toLowerCase();
-          bValue = b.title.toLowerCase();
+          aValue = a.title.toLowerCase().localeCompare(b.title.toLowerCase());
+          bValue = b.title.toLowerCase().localeCompare(a.title.toLowerCase());
           break;
         default: // popularity
           aValue = a.vote_count;

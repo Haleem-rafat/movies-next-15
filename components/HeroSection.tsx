@@ -9,7 +9,6 @@ import {
   ChevronRight,
   Star,
   Calendar,
-  Clock,
 } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
@@ -245,7 +244,7 @@ export default function HeroSection() {
       <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10 flex gap-2">
         {featuredMovies.map((_, index) => (
           <button
-            type="button" 
+            type="button"
             key={index}
             onClick={() => goToSlide(index)}
             className={`w-3 h-3 rounded-full transition-all duration-300 ${

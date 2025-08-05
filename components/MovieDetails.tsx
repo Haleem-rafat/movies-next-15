@@ -6,13 +6,11 @@ import {
   Calendar,
   Clock,
   Star,
-  Users,
   Play,
   Heart,
   Share2,
   Bookmark,
   ArrowLeft,
-  ExternalLink,
 } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
@@ -23,7 +21,7 @@ interface MovieDetailsProps {
 
 interface Movie {
   id: number;
-  title: string;
+  title: string;  
   original_title: string;
   overview: string;
   poster_path: string;
@@ -73,7 +71,6 @@ export default function MovieDetails({ movieId }: MovieDetailsProps) {
         setIsLoading(true);
         setError(null);
 
-        // Fetch movie details
         const movieResponse = await fetch(`/api/movies/${movieId}`);
         if (!movieResponse.ok) throw new Error("Failed to fetch movie details");
         const movieData = await movieResponse.json();
@@ -292,7 +289,7 @@ export default function MovieDetails({ movieId }: MovieDetailsProps) {
             <button
               type="button"
               key={tab.id}
-              onClick={() => setActiveTab(tab.id as any)}
+              onClick={() => setActiveTab(tab.id as "overview" | "cast" | "reviews")}
               className={`px-6 py-3 font-semibold transition-all duration-300 ${
                 activeTab === tab.id
                   ? "text-white border-b-2 border-red-500"
