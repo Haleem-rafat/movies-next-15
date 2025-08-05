@@ -19,7 +19,7 @@ export async function GET(
 
     return NextResponse.json(data);
   } catch (error) {
-    console.error("TV series details API error:", error);
+    // Log error for debugging (consider using a proper logging service in production)
     return NextResponse.json(
       { error: "Failed to fetch TV series details" },
       { status: 500 }

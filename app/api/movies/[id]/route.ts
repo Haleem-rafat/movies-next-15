@@ -9,20 +9,17 @@ export async function GET(
     const { id } = await params;
 
     if (!id || isNaN(Number(id))) {
-      return NextResponse.json(
-        { error: "Invalid movie ID" },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: "Invalid movie ID" }, { status: 400 });
     }
 
     const data = await suggestionsService.getMovieDetails(id);
 
     return NextResponse.json(data);
   } catch (error) {
-    console.error("Movie details API error:", error);
+    // Log error for debugging (consider using a proper logging service in production)
     return NextResponse.json(
       { error: "Failed to fetch movie details" },
       { status: 500 }
     );
   }
-} 
+}

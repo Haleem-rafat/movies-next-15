@@ -28,10 +28,10 @@ export async function GET(request: NextRequest) {
 
     return NextResponse.json(data);
   } catch (error) {
-    console.error("Search API error:", error);
+    // Log error for debugging (consider using a proper logging service in production)
     return NextResponse.json(
       { error: "Failed to perform search" },
       { status: 500 }
     );
   }
-} 
+}

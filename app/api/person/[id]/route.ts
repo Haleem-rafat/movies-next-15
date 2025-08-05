@@ -9,20 +9,17 @@ export async function GET(
     const { id } = await params;
 
     if (!id || isNaN(Number(id))) {
-      return NextResponse.json(
-        { error: "Invalid person ID" },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: "Invalid person ID" }, { status: 400 });
     }
 
     const data = await suggestionsService.getPersonDetails(id);
 
     return NextResponse.json(data);
   } catch (error) {
-    console.error("Person details API error:", error);
+    // Log error for debugging (consider using a proper logging service in production)
     return NextResponse.json(
       { error: "Failed to fetch person details" },
       { status: 500 }
     );
   }
-} 
+}

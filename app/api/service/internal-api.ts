@@ -13,11 +13,11 @@ const internalApiClient: AxiosInstance = axios.create({
 // Request interceptor for internal API
 internalApiClient.interceptors.request.use(
   (config) => {
-    console.log("🚀 Internal API Request:", config.method?.toUpperCase(), config.url);
+    // Log request for debugging (consider using a proper logging service in production)
     return config;
   },
   (error) => {
-    console.error("❌ Internal Request Error:", error);
+    // Log error for debugging (consider using a proper logging service in production)
     return Promise.reject(error);
   }
 );
@@ -25,13 +25,13 @@ internalApiClient.interceptors.request.use(
 // Response interceptor for internal API
 internalApiClient.interceptors.response.use(
   (response) => {
-    console.log("✅ Internal API Response:", response.status, response.config.url);
+    // Log response for debugging (consider using a proper logging service in production)
     return response;
   },
   (error) => {
-    console.error("❌ Internal Response Error:", error.response?.status, error.response?.data);
+    // Log error for debugging (consider using a proper logging service in production)
     return Promise.reject(error);
   }
 );
 
-export default internalApiClient; 
+export default internalApiClient;

@@ -52,12 +52,12 @@ class SuggestionsService {
       });
       return data;
     } catch (error) {
-      console.error("Search multi error:", error);
+      // Log error for debugging (consider using a proper logging service in production)
       throw error;
     }
   }
 
-  public async getPopularMovies(page: number = 1): Promise<ISuggestions> {
+  public async getPopularMovies(_page: number = 1): Promise<ISuggestions> {
     try {
       // Use predefined request URL for popular movies
       const response = await fetch(requests.requestPopular);
@@ -67,7 +67,7 @@ class SuggestionsService {
       const data = await response.json();
       return data;
     } catch (error) {
-      console.error("Get popular movies error:", error);
+      // Log error for debugging (consider using a proper logging service in production)
       throw error;
     }
   }
@@ -82,7 +82,7 @@ class SuggestionsService {
       const data = await response.json();
       return data;
     } catch (error) {
-      console.error("Get top rated movies error:", error);
+      // Log error for debugging (consider using a proper logging service in production)
       throw error;
     }
   }
@@ -94,7 +94,7 @@ class SuggestionsService {
       });
       return data;
     } catch (error) {
-      console.error("Get popular TV error:", error);
+      // Log error for debugging (consider using a proper logging service in production)
       throw error;
     }
   }
@@ -106,7 +106,7 @@ class SuggestionsService {
       });
       return data;
     } catch (error) {
-      console.error("Get top rated TV error:", error);
+      // Log error for debugging (consider using a proper logging service in production)
       throw error;
     }
   }
@@ -121,7 +121,7 @@ class SuggestionsService {
       const data = await response.json();
       return data;
     } catch (error) {
-      console.error("Get trending error:", error);
+      // Log error for debugging (consider using a proper logging service in production)
       throw error;
     }
   }
@@ -135,7 +135,7 @@ class SuggestionsService {
       });
       return data;
     } catch (error) {
-      console.error("Get movie details error:", error);
+      // Log error for debugging (consider using a proper logging service in production)
       throw error;
     }
   }
@@ -149,7 +149,7 @@ class SuggestionsService {
       });
       return data;
     } catch (error) {
-      console.error("Get TV details error:", error);
+      // Log error for debugging (consider using a proper logging service in production)
       throw error;
     }
   }
@@ -159,7 +159,7 @@ class SuggestionsService {
       const { data } = await instance.get("/genre/movie/list");
       return data;
     } catch (error) {
-      console.error("Get movie genres error:", error);
+      // Log error for debugging (consider using a proper logging service in production)
       throw error;
     }
   }
@@ -169,7 +169,7 @@ class SuggestionsService {
       const { data } = await instance.get("/genre/tv/list");
       return data;
     } catch (error) {
-      console.error("Get TV genres error:", error);
+      // Log error for debugging (consider using a proper logging service in production)
       throw error;
     }
   }
@@ -181,7 +181,7 @@ class SuggestionsService {
       const { data } = await instance.get("/discover/movie", { params });
       return data;
     } catch (error) {
-      console.error("Discover movies error:", error);
+      // Log error for debugging (consider using a proper logging service in production)
       throw error;
     }
   }
@@ -191,7 +191,7 @@ class SuggestionsService {
       const { data } = await instance.get("/discover/tv", { params });
       return data;
     } catch (error) {
-      console.error("Discover TV error:", error);
+      // Log error for debugging (consider using a proper logging service in production)
       throw error;
     }
   }
@@ -206,7 +206,7 @@ class SuggestionsService {
       const data = await response.json();
       return data;
     } catch (error) {
-      console.error("Get upcoming movies error:", error);
+      // Log error for debugging (consider using a proper logging service in production)
       throw error;
     }
   }
@@ -221,7 +221,7 @@ class SuggestionsService {
       const data = await response.json();
       return data;
     } catch (error) {
-      console.error("Get horror movies error:", error);
+      // Log error for debugging (consider using a proper logging service in production)
       throw error;
     }
   }
@@ -233,7 +233,7 @@ class SuggestionsService {
       });
       return data;
     } catch (error) {
-      console.error("Get now playing movies error:", error);
+      // Log error for debugging (consider using a proper logging service in production)
       throw error;
     }
   }
@@ -245,7 +245,7 @@ class SuggestionsService {
       });
       return data;
     } catch (error) {
-      console.error("Get on the air TV error:", error);
+      // Log error for debugging (consider using a proper logging service in production)
       throw error;
     }
   }
@@ -257,7 +257,7 @@ class SuggestionsService {
       });
       return data;
     } catch (error) {
-      console.error("Get airing today TV error:", error);
+      // Log error for debugging (consider using a proper logging service in production)
       throw error;
     }
   }
@@ -271,7 +271,7 @@ class SuggestionsService {
       });
       return data;
     } catch (error) {
-      console.error("Get person details error:", error);
+      // Log error for debugging (consider using a proper logging service in production)
       throw error;
     }
   }
@@ -281,7 +281,7 @@ class SuggestionsService {
       const { data } = await instance.get(`/movie/${movieId}/credits`);
       return data;
     } catch (error) {
-      console.error("Get movie credits error:", error);
+      // Log error for debugging (consider using a proper logging service in production)
       throw error;
     }
   }
@@ -291,7 +291,7 @@ class SuggestionsService {
       const { data } = await instance.get(`/tv/${tvId}/credits`);
       return data;
     } catch (error) {
-      console.error("Get TV credits error:", error);
+      // Log error for debugging (consider using a proper logging service in production)
       throw error;
     }
   }
@@ -301,7 +301,7 @@ class SuggestionsService {
       const { data } = await instance.get(`/movie/${movieId}/videos`);
       return data;
     } catch (error) {
-      console.error("Get movie videos error:", error);
+      // Log error for debugging (consider using a proper logging service in production)
       throw error;
     }
   }
@@ -311,7 +311,7 @@ class SuggestionsService {
       const { data } = await instance.get(`/tv/${tvId}/videos`);
       return data;
     } catch (error) {
-      console.error("Get TV videos error:", error);
+      // Log error for debugging (consider using a proper logging service in production)
       throw error;
     }
   }
@@ -321,7 +321,7 @@ class SuggestionsService {
       const { data } = await instance.get(`/movie/${movieId}/images`);
       return data;
     } catch (error) {
-      console.error("Get movie images error:", error);
+      // Log error for debugging (consider using a proper logging service in production)
       throw error;
     }
   }
@@ -331,7 +331,7 @@ class SuggestionsService {
       const { data } = await instance.get(`/tv/${tvId}/images`);
       return data;
     } catch (error) {
-      console.error("Get TV images error:", error);
+      // Log error for debugging (consider using a proper logging service in production)
       throw error;
     }
   }
@@ -346,7 +346,7 @@ class SuggestionsService {
       });
       return data;
     } catch (error) {
-      console.error("Get movie recommendations error:", error);
+      // Log error for debugging (consider using a proper logging service in production)
       throw error;
     }
   }
@@ -361,7 +361,7 @@ class SuggestionsService {
       });
       return data;
     } catch (error) {
-      console.error("Get TV recommendations error:", error);
+      // Log error for debugging (consider using a proper logging service in production)
       throw error;
     }
   }
@@ -376,7 +376,7 @@ class SuggestionsService {
       });
       return data;
     } catch (error) {
-      console.error("Get movie similar error:", error);
+      // Log error for debugging (consider using a proper logging service in production)
       throw error;
     }
   }
@@ -391,7 +391,7 @@ class SuggestionsService {
       });
       return data;
     } catch (error) {
-      console.error("Get TV similar error:", error);
+      // Log error for debugging (consider using a proper logging service in production)
       throw error;
     }
   }

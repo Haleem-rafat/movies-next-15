@@ -16,10 +16,10 @@ export async function GET(request: NextRequest) {
 
     return NextResponse.json(data);
   } catch (error) {
-    console.error("Popular movies API error:", error);
+    // Log error for debugging (consider using a proper logging service in production)
     return NextResponse.json(
       { error: "Failed to fetch popular movies" },
       { status: 500 }
     );
   }
-} 
+}

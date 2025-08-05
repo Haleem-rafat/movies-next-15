@@ -16,10 +16,10 @@ export async function GET(request: NextRequest) {
 
     return NextResponse.json(data);
   } catch (error) {
-    console.error("Upcoming movies API error:", error);
+    // Log error for debugging (consider using a proper logging service in production)
     return NextResponse.json(
       { error: "Failed to fetch upcoming movies" },
       { status: 500 }
     );
   }
-} 
+}

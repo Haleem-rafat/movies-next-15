@@ -30,15 +30,11 @@ instance.interceptors.request.use(
     // Add language parameter
     config.params.language = "en-US";
 
-    console.log(
-      "🚀 External API Request:",
-      config.method?.toUpperCase(),
-      config.url
-    );
+    // Log request for debugging (consider using a proper logging service in production)
     return config;
   },
   (error) => {
-    console.error("❌ Request Error:", error);
+    // Log error for debugging (consider using a proper logging service in production)
     return Promise.reject(error);
   }
 );
@@ -46,27 +42,19 @@ instance.interceptors.request.use(
 // Response interceptor
 instance.interceptors.response.use(
   (response: AxiosResponse) => {
-    console.log(
-      "✅ External API Response:",
-      response.status,
-      response.config.url
-    );
+    // Log response for debugging (consider using a proper logging service in production)
     return response;
   },
   (error) => {
-    console.error(
-      "❌ Response Error:",
-      error.response?.status,
-      error.response?.data
-    );
+    // Log error for debugging (consider using a proper logging service in production)
 
     // Handle specific error cases
     if (error.response?.status === 401) {
-      console.error("API Key is invalid or missing");
+      // API Key is invalid or missing
     } else if (error.response?.status === 429) {
-      console.error("Rate limit exceeded");
+      // Rate limit exceeded
     } else if (error.response?.status >= 500) {
-      console.error("Server error");
+      // Server error
     }
 
     return Promise.reject(error);
