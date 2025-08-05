@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import {
   Calendar,
-  Clock,
   Star,
   Play,
   Heart,
@@ -13,7 +12,6 @@ import {
   ArrowLeft,
   Users,
   Tv,
-  Award,
   Globe,
 } from "lucide-react";
 import Link from "next/link";
@@ -275,17 +273,29 @@ export default function TVSeriesDetails({ seriesId }: TVSeriesDetailsProps) {
                 </div>
 
                 <div className="flex flex-wrap gap-3">
-                  <button className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-red-500 to-purple-600 hover:from-red-600 hover:to-purple-700 text-white font-semibold rounded-lg transition-all duration-300 transform hover:scale-105">
+                  <button
+                    type="button"
+                    className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-red-500 to-purple-600 hover:from-red-600 hover:to-purple-700 text-white font-semibold rounded-lg transition-all duration-300 transform hover:scale-105"
+                  >
                     <Play className="w-4 h-4 mr-2" />
                     Watch Trailer
                   </button>
-                  <button className="inline-flex items-center px-4 py-3 bg-gray-700/50 backdrop-blur-sm hover:bg-gray-600/50 text-white rounded-lg transition-all duration-300">
+                  <button
+                    type="button"
+                    className="inline-flex items-center px-4 py-3 bg-gray-700/50 backdrop-blur-sm hover:bg-gray-600/50 text-white rounded-lg transition-all duration-300"
+                  >
                     <Heart className="w-4 h-4" />
                   </button>
-                  <button className="inline-flex items-center px-4 py-3 bg-gray-700/50 backdrop-blur-sm hover:bg-gray-600/50 text-white rounded-lg transition-all duration-300">
+                  <button
+                    type="button"
+                    className="inline-flex items-center px-4 py-3 bg-gray-700/50 backdrop-blur-sm hover:bg-gray-600/50 text-white rounded-lg transition-all duration-300"
+                  >
                     <Bookmark className="w-4 h-4" />
                   </button>
-                  <button className="inline-flex items-center px-4 py-3 bg-gray-700/50 backdrop-blur-sm hover:bg-gray-600/50 text-white rounded-lg transition-all duration-300">
+                  <button
+                    type="button"
+                    className="inline-flex items-center px-4 py-3 bg-gray-700/50 backdrop-blur-sm hover:bg-gray-600/50 text-white rounded-lg transition-all duration-300"
+                  >
                     <Share2 className="w-4 h-4" />
                   </button>
                 </div>
@@ -305,6 +315,7 @@ export default function TVSeriesDetails({ seriesId }: TVSeriesDetailsProps) {
             { id: "reviews", label: "Reviews" },
           ].map((tab) => (
             <button
+              type="button"
               key={tab.id}
               onClick={() => setActiveTab(tab.id as any)}
               className={`px-6 py-3 font-semibold transition-all duration-300 whitespace-nowrap ${

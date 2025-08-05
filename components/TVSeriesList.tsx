@@ -127,7 +127,7 @@ export default function TVSeriesList({
 
     // Apply sorting
     filtered.sort((a, b) => {
-      let aValue: any, bValue: any;
+      let aValue: number | Date | string, bValue: number | Date | string;
 
       switch (sortBy) {
         case "rating":
@@ -207,6 +207,7 @@ export default function TVSeriesList({
         <h3 className="text-xl font-semibold mb-4">Error Loading TV Series</h3>
         <p className="text-gray-400 mb-6">{error}</p>
         <button
+          type="button"
           onClick={() => window.location.reload()}
           className="px-6 py-3 bg-gradient-to-r from-red-500 to-purple-600 hover:from-red-600 hover:to-purple-700 text-white font-semibold rounded-lg transition-all duration-300"
         >
@@ -230,6 +231,7 @@ export default function TVSeriesList({
             <div className="flex flex-wrap gap-2">
               {genres.map((genre) => (
                 <button
+                  type="button"
                   key={genre.id}
                   onClick={() => handleGenreToggle(genre.id)}
                   className={`px-3 py-1 rounded-full text-sm transition-all duration-300 ${
@@ -288,6 +290,7 @@ export default function TVSeriesList({
             <h3 className="text-lg font-semibold mb-3">View</h3>
             <div className="flex gap-2">
               <button
+                type="button"
                 onClick={() => setViewMode("grid")}
                 className={`p-2 rounded-lg transition-all duration-300 ${
                   viewMode === "grid"
@@ -298,6 +301,7 @@ export default function TVSeriesList({
                 <Grid className="w-5 h-5" />
               </button>
               <button
+                type="button"
                 onClick={() => setViewMode("list")}
                 className={`p-2 rounded-lg transition-all duration-300 ${
                   viewMode === "list"
@@ -315,6 +319,7 @@ export default function TVSeriesList({
         {(selectedGenres.length > 0 || yearFilter) && (
           <div className="mt-4 pt-4 border-t border-gray-700">
             <button
+              type="button"
               onClick={clearFilters}
               className="text-gray-400 hover:text-white transition-colors duration-300"
             >
@@ -444,6 +449,7 @@ export default function TVSeriesList({
       {totalPages > 1 && (
         <div className="flex justify-center items-center gap-2 mt-8">
           <button
+            type="button"
             onClick={() => setCurrentPage((prev) => Math.max(1, prev - 1))}
             disabled={currentPage === 1}
             className="p-2 bg-gray-700/50 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-600/50 transition-all duration-300"
@@ -456,6 +462,7 @@ export default function TVSeriesList({
               Math.max(1, Math.min(totalPages - 4, currentPage - 2)) + i;
             return (
               <button
+                type="button"
                 key={page}
                 onClick={() => setCurrentPage(page)}
                 className={`px-3 py-2 rounded-lg transition-all duration-300 ${
@@ -470,6 +477,7 @@ export default function TVSeriesList({
           })}
 
           <button
+            type="button"
             onClick={() =>
               setCurrentPage((prev) => Math.min(totalPages, prev + 1))
             }
@@ -491,6 +499,7 @@ export default function TVSeriesList({
             criteria.
           </p>
           <button
+            type="button"
             onClick={clearFilters}
             className="px-6 py-3 bg-gradient-to-r from-purple-500 to-blue-600 hover:from-purple-600 hover:to-blue-700 text-white font-semibold rounded-lg transition-all duration-300"
           >

@@ -106,6 +106,7 @@ export default function TrendingMovies() {
             </h3>
             <p className="text-gray-400 mb-6">{error.message}</p>
             <button
+              type="button"
               onClick={() => mutate()}
               className="px-6 py-3 bg-gradient-to-r from-red-500 to-purple-600 hover:from-red-600 hover:to-purple-700 text-white font-semibold rounded-lg transition-all duration-300"
             >
@@ -146,7 +147,9 @@ export default function TrendingMovies() {
               <h2 className="text-3xl font-bold text-white mb-1">
                 Trending Movies
               </h2>
-              <p className="text-gray-400">Discover what's hot right now</p>
+              <p className="text-gray-400">
+                Discover what&apos;s hot right now
+              </p>
             </div>
           </div>
 
@@ -162,6 +165,7 @@ export default function TrendingMovies() {
             {/* Navigation Arrows */}
             <div className="flex gap-2">
               <button
+                type="button"
                 onClick={prevSlide}
                 disabled={currentIndex === 0}
                 className="p-3 bg-gray-800/50 hover:bg-gray-700/50 disabled:opacity-50 disabled:cursor-not-allowed rounded-lg transition-all duration-300 group"
@@ -169,6 +173,7 @@ export default function TrendingMovies() {
                 <ChevronLeft className="w-5 h-5 text-white group-hover:text-yellow-400 transition-colors" />
               </button>
               <button
+                type="button"
                 onClick={nextSlide}
                 disabled={currentIndex + 4 >= movies.length}
                 className="p-3 bg-gray-800/50 hover:bg-gray-700/50 disabled:opacity-50 disabled:cursor-not-allowed rounded-lg transition-all duration-300 group"
@@ -213,13 +218,22 @@ export default function TrendingMovies() {
                           <div className="absolute bottom-4 left-4 right-4">
                             <div className="flex items-center justify-between">
                               <div className="flex items-center gap-2">
-                                <button className="p-2 bg-white/20 backdrop-blur-sm rounded-full hover:bg-white/30 transition-all duration-200">
+                                <button
+                                  type="button"
+                                  className="p-2 bg-white/20 backdrop-blur-sm rounded-full hover:bg-white/30 transition-all duration-200"
+                                >
                                   <Play className="w-4 h-4 text-white" />
                                 </button>
-                                <button className="p-2 bg-white/20 backdrop-blur-sm rounded-full hover:bg-white/30 transition-all duration-200">
+                                <button
+                                  type="button"
+                                  className="p-2 bg-white/20 backdrop-blur-sm rounded-full hover:bg-white/30 transition-all duration-200"
+                                >
                                   <Heart className="w-4 h-4 text-white" />
                                 </button>
-                                <button className="p-2 bg-white/20 backdrop-blur-sm rounded-full hover:bg-white/30 transition-all duration-200">
+                                <button
+                                  type="button"
+                                  className="p-2 bg-white/20 backdrop-blur-sm rounded-full hover:bg-white/30 transition-all duration-200"
+                                >
                                   <Share2 className="w-4 h-4 text-white" />
                                 </button>
                               </div>
@@ -267,6 +281,7 @@ export default function TrendingMovies() {
             {Array.from({ length: Math.ceil(movies.length / 8) }).map(
               (_, index) => (
                 <button
+                  type="button"
                   key={index}
                   onClick={() => setCurrentIndex(index * 8)}
                   className={`w-2 h-2 rounded-full transition-all duration-300 ${

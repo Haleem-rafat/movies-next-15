@@ -226,6 +226,7 @@ export default function HeroSection() {
 
       {/* Navigation Arrows */}
       <button
+        type="button"
         onClick={prevSlide}
         className="absolute left-4 top-1/2 transform -translate-y-1/2 z-10 p-3 bg-black/50 backdrop-blur-sm text-white rounded-full hover:bg-black/70 transition-all duration-300"
       >
@@ -233,6 +234,7 @@ export default function HeroSection() {
       </button>
 
       <button
+        type="button"
         onClick={nextSlide}
         className="absolute right-4 top-1/2 transform -translate-y-1/2 z-10 p-3 bg-black/50 backdrop-blur-sm text-white rounded-full hover:bg-black/70 transition-all duration-300"
       >
@@ -243,6 +245,7 @@ export default function HeroSection() {
       <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10 flex gap-2">
         {featuredMovies.map((_, index) => (
           <button
+            type="button" 
             key={index}
             onClick={() => goToSlide(index)}
             className={`w-3 h-3 rounded-full transition-all duration-300 ${

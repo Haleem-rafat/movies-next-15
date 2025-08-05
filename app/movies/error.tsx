@@ -31,6 +31,7 @@ export default function MoviesError({ error, reset }: ErrorProps) {
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <button
+              type="button"
               onClick={reset}
               className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-red-500 to-purple-600 hover:from-red-600 hover:to-purple-700 text-white font-semibold rounded-lg transition-all duration-300 transform hover:scale-105"
             >

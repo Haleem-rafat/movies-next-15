@@ -115,7 +115,7 @@ export default function MoviesByCategory({ category }: MoviesByCategoryProps) {
   }, [category, currentPage, config.endpoint]);
 
   useEffect(() => {
-    let filtered = [...movies];
+    const filtered = [...movies];
 
     // Apply sorting
     filtered.sort((a, b) => {
@@ -184,6 +184,7 @@ export default function MoviesByCategory({ category }: MoviesByCategoryProps) {
         <h3 className="text-xl font-semibold mb-4">Error Loading Movies</h3>
         <p className="text-gray-400 mb-6">{error}</p>
         <button
+          type="button"
           onClick={() => window.location.reload()}
           className="px-6 py-3 bg-gradient-to-r from-red-500 to-purple-600 hover:from-red-600 hover:to-purple-700 text-white font-semibold rounded-lg transition-all duration-300"
         >
@@ -232,6 +233,7 @@ export default function MoviesByCategory({ category }: MoviesByCategoryProps) {
               <option value="title">Title</option>
             </select>
             <button
+              type="button"
               onClick={() =>
                 setSortOrder((prev) => (prev === "asc" ? "desc" : "asc"))
               }
@@ -249,6 +251,7 @@ export default function MoviesByCategory({ category }: MoviesByCategoryProps) {
         {/* View Mode */}
         <div className="flex gap-2">
           <button
+            type="button"
             onClick={() => setViewMode("grid")}
             className={`p-2 rounded-lg transition-all duration-300 ${
               viewMode === "grid"
@@ -259,6 +262,7 @@ export default function MoviesByCategory({ category }: MoviesByCategoryProps) {
             <Grid className="w-5 h-5" />
           </button>
           <button
+            type="button"
             onClick={() => setViewMode("list")}
             className={`p-2 rounded-lg transition-all duration-300 ${
               viewMode === "list"
@@ -371,6 +375,7 @@ export default function MoviesByCategory({ category }: MoviesByCategoryProps) {
       {totalPages > 1 && (
         <div className="flex justify-center items-center gap-2 mt-8">
           <button
+            type="button"
             onClick={() => setCurrentPage((prev) => Math.max(1, prev - 1))}
             disabled={currentPage === 1}
             className="p-2 bg-gray-700/50 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-600/50 transition-all duration-300"
@@ -383,6 +388,7 @@ export default function MoviesByCategory({ category }: MoviesByCategoryProps) {
               Math.max(1, Math.min(totalPages - 4, currentPage - 2)) + i;
             return (
               <button
+                type="button"
                 key={page}
                 onClick={() => setCurrentPage(page)}
                 className={`px-3 py-2 rounded-lg transition-all duration-300 ${
@@ -397,6 +403,7 @@ export default function MoviesByCategory({ category }: MoviesByCategoryProps) {
           })}
 
           <button
+            type="button"
             onClick={() =>
               setCurrentPage((prev) => Math.min(totalPages, prev + 1))
             }
