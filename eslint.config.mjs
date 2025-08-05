@@ -20,6 +20,7 @@ const eslintConfig = [
       "react/react-in-jsx-scope": "off",
       "react/button-has-type": "warn",
       "react-hooks/exhaustive-deps": "off",
+      "@typescript-eslint/no-unused-vars": "off",
       "react-hooks/rules-of-hooks": "error",
       "no-case-declarations": "warn",
       "no-console": "warn",

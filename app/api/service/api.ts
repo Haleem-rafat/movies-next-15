@@ -5,7 +5,7 @@ import axios, {
 } from "axios";
 
 // API Configuration for external TMDB API
-const apiKey = process.env.NEXT_PUBLIC_TMDB_API_KEY;
+const apiKey = process.env.TMDB_API_KEY || process.env.NEXT_PUBLIC_TMDB_API_KEY;
 const baseURL = "https://api.themoviedb.org/3";
 
 // Create axios instance for external TMDB API

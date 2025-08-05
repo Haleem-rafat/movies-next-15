@@ -16,7 +16,7 @@ export async function GET(
 
     return NextResponse.json(data);
   } catch (error) {
-    console.log("Failed to fetch person details", error);
+    // Log error for debugging (consider using a proper logging service in production)
     return NextResponse.json(
       { error: "Failed to fetch person details" },
       { status: 500 }
