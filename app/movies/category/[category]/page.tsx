@@ -3,13 +3,13 @@ import { notFound } from "next/navigation";
 import MoviesByCategory from "@/components/MoviesByCategory";
 
 interface CategoryPageProps {
-  params: {
+  params: Promise<{
     category: string; 
-  };
+  }>;
 }
 
 export async function generateMetadata({ params }: CategoryPageProps): Promise<Metadata> {
-  const category = params.category;
+  const { category } = await params;
   const categoryTitle = category.charAt(0).toUpperCase() + category.slice(1).replace('-', ' ');
   
   return {
@@ -18,8 +18,8 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
   };
 }
 
-export default function CategoryPage({ params }: CategoryPageProps) {
-  const category = params.category;
+export default async function CategoryPage({ params }: CategoryPageProps) {
+  const { category } = await params;
 
   // Validate category
   const validCategories = ['trending', 'popular', 'top-rated', 'upcoming', 'now-playing'];

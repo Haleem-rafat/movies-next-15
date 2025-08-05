@@ -6,7 +6,6 @@ import {
   Star,
   Calendar,
   Search,
-  Filter,
   SortAsc,
   SortDesc,
   ChevronLeft,
@@ -16,7 +15,6 @@ import {
   Film,
   Tv,
   Users,
-  X,
 } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
@@ -243,6 +241,7 @@ export default function SearchResults({
         <h3 className="text-xl font-semibold mb-4">Error Loading Results</h3>
         <p className="text-gray-400 mb-6">{error}</p>
         <button
+          type="button"
           onClick={() => window.location.reload()}
           className="px-6 py-3 bg-gradient-to-r from-red-500 to-purple-600 hover:from-red-600 hover:to-purple-700 text-white font-semibold rounded-lg transition-all duration-300"
         >
@@ -267,7 +266,9 @@ export default function SearchResults({
               Found{" "}
               <span className="text-white font-semibold">{totalResults}</span>{" "}
               results for{" "}
-              <span className="text-white font-semibold">"{query}"</span>
+              <span className="text-white font-semibold">
+                &quot;{query}&quot;
+              </span>
             </p>
           </div>
 
@@ -330,6 +331,7 @@ export default function SearchResults({
             <h3 className="text-lg font-semibold mb-3">View</h3>
             <div className="flex gap-2">
               <button
+                type="button"
                 onClick={() => setViewMode("grid")}
                 className={`p-2 rounded-lg transition-all duration-300 ${
                   viewMode === "grid"
@@ -340,6 +342,7 @@ export default function SearchResults({
                 <Grid className="w-5 h-5" />
               </button>
               <button
+                type="button"
                 onClick={() => setViewMode("list")}
                 className={`p-2 rounded-lg transition-all duration-300 ${
                   viewMode === "list"
@@ -357,6 +360,7 @@ export default function SearchResults({
         {(selectedMediaType !== type || selectedYear) && (
           <div className="mt-4 pt-4 border-t border-gray-700">
             <button
+              type="button"
               onClick={clearFilters}
               className="text-gray-400 hover:text-white transition-colors duration-300"
             >
@@ -508,6 +512,7 @@ export default function SearchResults({
       {totalPages > 1 && (
         <div className="flex justify-center items-center gap-2 mt-8">
           <button
+            type="button"
             onClick={() => {
               const newPage = Math.max(1, page - 1);
               window.history.pushState(
@@ -526,6 +531,7 @@ export default function SearchResults({
             const pageNum = Math.max(1, Math.min(totalPages - 4, page - 2)) + i;
             return (
               <button
+                type="button"
                 key={pageNum}
                 onClick={() => {
                   window.history.pushState(
@@ -546,6 +552,7 @@ export default function SearchResults({
           })}
 
           <button
+            type="button"
             onClick={() => {
               const newPage = Math.min(totalPages, page + 1);
               window.history.pushState(
@@ -568,10 +575,11 @@ export default function SearchResults({
           <Search className="w-16 h-16 text-gray-400 mx-auto mb-4" />
           <h3 className="text-xl font-semibold mb-4">No results found</h3>
           <p className="text-gray-400 mb-6">
-            No results found for "{query}". Try adjusting your search terms or
-            filters.
+            No results found for &quot;{query}&quot;. Try adjusting your search
+            terms or filters.
           </p>
           <button
+            type="button"
             onClick={clearFilters}
             className="px-6 py-3 bg-gradient-to-r from-red-500 to-purple-600 hover:from-red-600 hover:to-purple-700 text-white font-semibold rounded-lg transition-all duration-300"
           >

@@ -7,17 +7,18 @@ export const metadata: Metadata = {
 };
 
 interface SearchPageProps {
-  searchParams: {
+  searchParams: Promise<{
     q?: string;
     type?: string;
     page?: string;
-  };
+  }>;
 }
 
-export default function SearchPage({ searchParams }: SearchPageProps) {
-  const query = searchParams.q || "";
-  const type = searchParams.type || "all";
-  const page = parseInt(searchParams.page || "1");
+export default async function SearchPage({ searchParams }: SearchPageProps) {
+  const params = await searchParams;
+  const query = params.q || "";
+  const type = params.type || "all";
+  const page = parseInt(params.page || "1");
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white pt-20">
@@ -29,7 +30,7 @@ export default function SearchPage({ searchParams }: SearchPageProps) {
           {query && (
             <p className="text-lg text-gray-300 max-w-2xl mx-auto">
               Results for:{" "}
-              <span className="text-white font-semibold">"{query}"</span>
+              <span className="text-white font-semibold">&quot;{query}&quot;</span>
             </p>
           )}
         </div>

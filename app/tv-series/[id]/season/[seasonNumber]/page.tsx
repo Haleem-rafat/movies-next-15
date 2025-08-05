@@ -3,17 +3,16 @@ import { notFound } from "next/navigation";
 import SeasonDetails from "@/components/SeasonDetails";
 
 interface SeasonPageProps {
-  params: {
+  params: Promise<{
     id: string;
     seasonNumber: string;
-  };
+  }>;
 }
 
 export async function generateMetadata({
   params,
 }: SeasonPageProps): Promise<Metadata> {
-  const seriesId = params.id;
-  const seasonNumber = params.seasonNumber;
+  const { id: seriesId, seasonNumber } = await params;
 
   return {
     title: `Season ${seasonNumber} - Rise of coding`,
@@ -21,9 +20,8 @@ export async function generateMetadata({
   };
 }
 
-export default function SeasonPage({ params }: SeasonPageProps) {
-  const seriesId = params.id;
-  const seasonNumber = params.seasonNumber;
+export default async function SeasonPage({ params }: SeasonPageProps) {
+  const { id: seriesId, seasonNumber } = await params;
 
   // Validate IDs
   if (
@@ -48,10 +46,7 @@ export default function SeasonPage({ params }: SeasonPageProps) {
           </p>
         </div>
 
-        <SeasonDetails
-          seriesId={seriesId}
-          seasonNumber={parseInt(seasonNumber)}
-        />
+        <SeasonDetails seriesId={seriesId} seasonNumber={seasonNumber} />
       </div>
     </div>
   );

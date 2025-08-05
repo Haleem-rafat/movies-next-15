@@ -1,11 +1,11 @@
-import MovieDetails from "@/components/MovieDetails";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
+import MovieDetails from "@/components/MovieDetails";
 
 interface MoviePageProps {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 }
 
 export async function generateMetadata({
@@ -13,7 +13,7 @@ export async function generateMetadata({
 }: MoviePageProps): Promise<Metadata> {
   try {
     // Fetch movie data to generate dynamic metadata
-    const movieId = params.id;
+    const { id: movieId } = await params;
 
     return {
       title: `Movie Details - Rise of coding`,
@@ -27,8 +27,8 @@ export async function generateMetadata({
   }
 }
 
-export default function MoviePage({ params }: MoviePageProps) {
-  const movieId = params.id;
+export default async function MoviePage({ params }: MoviePageProps) {
+  const { id: movieId } = await params;
 
   // Validate movie ID
   if (!movieId || isNaN(Number(movieId))) {

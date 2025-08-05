@@ -3,15 +3,15 @@ import { notFound } from "next/navigation";
 import PersonDetails from "@/components/PersonDetails";
 
 interface PersonPageProps {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 }
 
 export async function generateMetadata({
   params,
 }: PersonPageProps): Promise<Metadata> {
-  const personId = params.id;
+  const { id: personId } = await params;
 
   return {
     title: `Actor Details - Rise of coding`,
@@ -19,8 +19,8 @@ export async function generateMetadata({
   };
 }
 
-export default function PersonPage({ params }: PersonPageProps) {
-  const personId = params.id;
+export default async function PersonPage({ params }: PersonPageProps) {
+  const { id: personId } = await params;
 
   // Validate person ID
   if (!personId || isNaN(Number(personId))) {

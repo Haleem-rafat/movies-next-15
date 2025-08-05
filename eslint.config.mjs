@@ -21,7 +21,7 @@ const eslintConfig = [
       "react/button-has-type": "warn",
       "react-hooks/exhaustive-deps": "off",
       "react-hooks/rules-of-hooks": "error",
-      "@typescript-eslint/no-unused-vars": "warn",
+      // "@typescript-eslint/no-unused-vars": "warn",
       "no-case-declarations": "warn",
       "no-console": "warn",
       "@typescript-eslint/explicit-function-return-type": "off",

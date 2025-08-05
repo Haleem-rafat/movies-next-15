@@ -45,9 +45,9 @@ export default function NotFound() {
           </h2>
 
           <p className="text-lg text-gray-300 mb-8 max-w-2xl mx-auto">
-            The page you're looking for doesn't exist or has been moved. Don't
-            worry, we've got plenty of amazing movies and TV shows waiting for
-            you!
+            The page you&apos;re looking for doesn&apos;t exist or has been
+            moved. Don&apos;t worry, we&apos;ve got plenty of amazing movies and
+            TV shows waiting for you!
           </p>
 
           {/* Quick Links */}
@@ -77,7 +77,7 @@ export default function NotFound() {
             <div className="flex items-center justify-center mb-4">
               <Search className="w-6 h-6 text-gray-400 mr-3" />
               <h3 className="text-xl font-semibold">
-                Can't find what you're looking for?
+                Can&apos;t find what you&apos;re looking for?
               </h3>
             </div>
             <p className="text-gray-300 mb-4">

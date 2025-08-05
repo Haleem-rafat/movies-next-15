@@ -3,16 +3,18 @@ import { notFound } from "next/navigation";
 import TVSeriesDetails from "@/components/TVSeriesDetails";
 
 interface TVSeriesPageProps {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 }
 
-export async function generateMetadata({ params }: TVSeriesPageProps): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: TVSeriesPageProps): Promise<Metadata> {
   try {
     // Fetch TV series data to generate dynamic metadata
-    const seriesId = params.id;
-    
+    const { id: seriesId } = await params;
+
     return {
       title: `TV Series Details - Rise of coding`,
       description: `Watch TV series details, cast, episodes, reviews, and more information.`,
@@ -25,8 +27,8 @@ export async function generateMetadata({ params }: TVSeriesPageProps): Promise<M
   }
 }
 
-export default function TVSeriesPage({ params }: TVSeriesPageProps) {
-  const seriesId = params.id;
+export default async function TVSeriesPage({ params }: TVSeriesPageProps) {
+  const { id: seriesId } = await params;
 
   // Validate series ID
   if (!seriesId || isNaN(Number(seriesId))) {
@@ -40,4 +42,4 @@ export default function TVSeriesPage({ params }: TVSeriesPageProps) {
       </div>
     </div>
   );
-} 
+}

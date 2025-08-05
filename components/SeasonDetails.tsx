@@ -11,8 +11,6 @@ import {
   Info,
   ChevronDown,
   ChevronUp,
-  ExternalLink,
-  Award,
   TrendingUp,
 } from "lucide-react";
 import Link from "next/link";
@@ -290,6 +288,7 @@ export default function SeasonDetails({
             { id: "cast", label: "Cast", icon: Users },
           ].map((tab) => (
             <button
+              type="button"
               key={tab.id}
               onClick={() => setActiveTab(tab.id as any)}
               className={`flex-1 px-6 py-4 text-sm font-medium transition-all duration-300 flex items-center justify-center gap-2 ${
@@ -392,6 +391,7 @@ export default function SeasonDetails({
                             </div>
                           </div>
                           <button
+                            type="button"
                             onClick={() => toggleEpisodeExpansion(episode.id)}
                             className="p-1 hover:bg-gray-600/50 rounded transition-colors"
                           >
