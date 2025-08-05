@@ -3,10 +3,10 @@ import suggestionsService from "@/app/api/service/suggestions.service";
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const { id } = params;
+    const { id } = await params;
 
     if (!id || isNaN(Number(id))) {
       return NextResponse.json(

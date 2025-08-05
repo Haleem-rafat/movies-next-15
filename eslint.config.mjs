@@ -24,7 +24,6 @@ const eslintConfig = [
       "@typescript-eslint/no-unused-vars": "warn",
       "no-case-declarations": "warn",
       "no-console": "warn",
-      "react-refresh/only-export-components": "warn",
       "@typescript-eslint/explicit-function-return-type": "off",
       "@typescript-eslint/no-explicit-any": "warn",
       "no-unsafe-optional-chaining": "warn",
